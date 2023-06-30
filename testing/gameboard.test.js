@@ -120,21 +120,21 @@ test('place ship out of bounds along y', () => {
   expect(result).toEqual(expected)
 })
 
-test('hit battleship once', () => { 
+test('hit battleship once', () => {
   const board = GameBoard()
   board.placeShip([0, 0], 'x', 'battleship')
-  board.receiveAttack([0,0])
+  board.receiveAttack([0, 0])
   const result = board.getBoard()
   const expected = boardWithBattleShipAlongXWithOneHit
   expect(result).toEqual(expected)
- })
+})
 
- test('place vertical ship, then try placing horizontal ship on top', () => {
+test('place vertical ship, then try placing horizontal ship on top', () => {
   const board = GameBoard()
   board.placeShip([0, 0], 'y', 'patrolBoat')
   board.placeShip([0, 0], 'x', 'patrolBoat')
   const result = board.getBoard()
   const expected = boardWithPatrolBoatAlongY
   expect(result).toEqual(expected)
- })
+})
 

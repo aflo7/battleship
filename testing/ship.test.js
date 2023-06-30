@@ -22,7 +22,7 @@ test('ship is not sunk', () => {
   expect(carrier.getHits()).toBe(3)
 })
 
-test('ship is sunk', () => {
+test('carrier is sunk', () => {
   const carrier = Ship("carrier", 5)
   carrier.hit()
   carrier.hit()
@@ -31,6 +31,12 @@ test('ship is sunk', () => {
   carrier.hit()
   expect(carrier.isSunk()).toBe(true)
   expect(carrier.getHits()).toBe(5)
+})
 
-
+test('patrolBoat is sunk', () => {
+  const patrolBoat = Ship("patrolBoat", 2)
+  patrolBoat.hit()
+  patrolBoat.hit()
+  expect(patrolBoat.isSunk()).toBe(true)
+  expect(patrolBoat.getHits()).toBe(2)
 })

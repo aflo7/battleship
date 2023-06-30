@@ -58,15 +58,13 @@ function GameBoard() {
   }
 
   function allSunk() {
-    for (const key in ships) {
-      if (!key.isSunk) {
+    for (const ship of Object.values(ships)) {
+      if (!ship.isSunk()) {
         return false
       }
     }
     return true
   }
-
-
 
   function placeShip([x, y], axis, shipName) {
     if (axis === 'x') {

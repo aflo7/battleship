@@ -218,6 +218,21 @@ const boardWithFiveShipsAlongX = [
   ['', '', '', '', '', '', '', '', '', ''],
 ]
 
+const boardWithFiveSunkShipsAlongX = [
+  ['x', 'x', 'x', 'x', 'x', '', '', '', '', ''],
+  ['x', 'x', 'x', 'x', '', '', '', '', '', ''],
+  ['x', 'x', 'x', '', '', '', '', '', '', ''],
+  ['x', 'x', 'x', '', '', '', '', '', '', ''],
+  ['x', 'x', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+]
+
+
+
 const boardWithFiveShipsAlongY = [
   ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat', '', '', '', '', ''],
   ['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat', '', '', '', '', ''],
@@ -244,4 +259,17 @@ const boardWithBattleShipAlongXWithOneHit = [
   ['', '', '', '', '', '', '', '', '', ''],
 ]
 
-module.exports = { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit }
+const boardWithSunkBattleShipAlongX = [
+  ['x', 'x', 'x', 'x', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+]
+
+module.exports = { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit, boardWithSunkBattleShipAlongX, boardWithFiveSunkShipsAlongX }
