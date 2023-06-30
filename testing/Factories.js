@@ -56,7 +56,7 @@ function GameBoard() {
       return false
     }
   }
-  
+
   function allSunk() {
     for (const key in ships) {
       if (!key.isSunk) {
@@ -117,4 +117,8 @@ function Player(name) {
 
 }
 
-module.exports = { Ship, GameBoard, Player }
+function Game() {
+
+}
+
+module.exports = { Ship, GameBoard, Player, Game }
