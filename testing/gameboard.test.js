@@ -1,5 +1,5 @@
-// const { GameBoard } = require('./Factories.js')
-import { GameBoard } from './Factories.js'
+
+import GameBoard from '../factories/GameBoard.js'
 import { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit } from './boards.js'
 
 // placeShip() tests

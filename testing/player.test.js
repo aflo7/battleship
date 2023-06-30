@@ -1,5 +1,5 @@
-// const { Player } = require('./Factories.js')
-import { Player } from './Factories.js'
+
+import Player from '../factories/Player.js'
 import { emptyBoard,boardWithFiveSunkShipsAlongX, boardWithBattleShipAlongX, boardWithBattleShipAlongXWithOneHit, boardWithSunkBattleShipAlongX } from './boards.js'
 
 test('create player and verify getName works', () => {

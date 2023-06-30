@@ -1,32 +1,4 @@
-function Ship(name, length) {
-  let hits = 0
-
-  function isSunk() {
-    return hits >= length
-  }
-
-  function hit() {
-    hits += 1
-  }
-
-
-  function getName() {
-    return name
-  }
-
-  function getLength() {
-    return length
-  }
-
-  function getHits() {
-    return hits
-  }
-
-  return {
-    getName, getLength, isSunk, hit, getHits
-  }
-}
-
+import Ship from "./Ship";
 function GameBoard() {
   const board = [...Array(10)].map(e => Array(10).fill(""));
   const shipLengths = {
@@ -99,24 +71,4 @@ function GameBoard() {
   return { getBoard, placeShip, receiveAttack, allSunk }
 }
 
-function Player(name) {
-  const gameBoard = GameBoard()
-
-
-  function getName() {
-    return name
-  }
-
-  function getGameBoard() {
-    return gameBoard
-  }
-
-  return { getGameBoard, getName }
-
-}
-
-function Game() {
-
-}
-
-export { Ship, GameBoard, Player, Game }
+export default GameBoard
