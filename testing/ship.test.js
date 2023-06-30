@@ -1,4 +1,5 @@
-const {Ship} = require('./Factories.js')
+// const {Ship} = require('./Factories.js')
+import { Ship } from "./Factories"
 
 test('create ships', () => {
   const carrier = Ship("carrier", 5)

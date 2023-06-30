@@ -272,4 +272,4 @@ const boardWithSunkBattleShipAlongX = [
   ['', '', '', '', '', '', '', '', '', ''],
 ]
 
-module.exports = { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit, boardWithSunkBattleShipAlongX, boardWithFiveSunkShipsAlongX }
+export { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit, boardWithSunkBattleShipAlongX, boardWithFiveSunkShipsAlongX }

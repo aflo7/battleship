@@ -119,4 +119,4 @@ function Game() {
 
 }
 
-module.exports = { Ship, GameBoard, Player, Game }
+export { Ship, GameBoard, Player, Game }

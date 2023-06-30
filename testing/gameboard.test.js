@@ -1,5 +1,6 @@
-const { GameBoard } = require('./Factories.js')
-const { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit } = require('./boards.js')
+// const { GameBoard } = require('./Factories.js')
+import { GameBoard } from './Factories.js'
+import { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit } from './boards.js'
 
 // placeShip() tests
 // startCoord, axis, shipName
