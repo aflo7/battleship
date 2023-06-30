@@ -5,47 +5,47 @@ const { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardW
 // startCoord, axis, shipName
 test('init empty board', () => {
   const expected = emptyBoard
-  const board = GameBoard()
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  const result = gameBoard.getBoard()
   expect(result).toEqual(expected)
 })
 
 test('place patrol boat along x axis', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'patrolBoat')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'x', 'patrolBoat')
+  const result = gameBoard.getBoard()
   const expected = boardWithPatrolBoatAlongX
   expect(result).toEqual(expected)
 })
 
 test('place patrol boat along y axis', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'y', 'patrolBoat')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'y', 'patrolBoat')
+  const result = gameBoard.getBoard()
   const expected = boardWithPatrolBoatAlongY
   expect(result).toEqual(expected)
 })
 
 test('place submarine along x axis', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'submarine')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'x', 'submarine')
+  const result = gameBoard.getBoard()
   const expected = boardWithSubmarineAlongX
   expect(result).toEqual(expected)
 })
 
 test('place destroyer along x axis', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'destroyer')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'x', 'destroyer')
+  const result = gameBoard.getBoard()
   const expected = boardWithDestroyerAlongX
   expect(result).toEqual(expected)
 })
 
 test('place battleship along x axis', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'battleship')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'x', 'battleship')
+  const result = gameBoard.getBoard()
   const expected = boardWithBattleShipAlongX
   expect(result).toEqual(expected)
 
@@ -53,22 +53,21 @@ test('place battleship along x axis', () => {
 })
 
 test('place carrier along x axis', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'carrier')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'x', 'carrier')
+  const result = gameBoard.getBoard()
   const expected = boardWithCarrierAlongX
   expect(result).toEqual(expected)
-
 })
 
 test('place all five ships along x', () => {
-  const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'carrier')
-  board.placeShip([1, 0], 'x', 'battleship')
-  board.placeShip([2, 0], 'x', 'destroyer')
-  board.placeShip([3, 0], 'x', 'submarine')
-  board.placeShip([4, 0], 'x', 'patrolBoat')
-  const result = board.getBoard()
+  const gameBoard = GameBoard()
+  gameBoard.placeShip([0, 0], 'x', 'carrier')
+  gameBoard.placeShip([1, 0], 'x', 'battleship')
+  gameBoard.placeShip([2, 0], 'x', 'destroyer')
+  gameBoard.placeShip([3, 0], 'x', 'submarine')
+  gameBoard.placeShip([4, 0], 'x', 'patrolBoat')
+  const result = gameBoard.getBoard()
   const expected = boardWithFiveShipsAlongX
   expect(result).toEqual(expected)
 
@@ -130,11 +129,12 @@ test('hit battleship once', () => {
   expect(result).toEqual(expected)
  })
 
- test('miss the battleship', () => { 
+ test('place vertical ship, then try placing horizontal ship on top', () => {
   const board = GameBoard()
-  board.placeShip([0, 0], 'x', 'battleship')
-  board.receiveAttack([3,3])
+  board.placeShip([0, 0], 'y', 'patrolBoat')
+  board.placeShip([0, 0], 'x', 'patrolBoat')
   const result = board.getBoard()
-  const expected = boardWithBattleShipAlongX
+  const expected = boardWithPatrolBoatAlongY
   expect(result).toEqual(expected)
  })
+

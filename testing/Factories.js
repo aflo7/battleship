@@ -36,30 +36,37 @@ function GameBoard() {
     'submarine': 3,
     'patrolBoat': 2
   }
-  const ships = new Set(['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'])
+  const ships = {
+    'carrier': Ship('carrier', 5),
+    'battleship': Ship('battleship', 4),
+    'destroyer': Ship('destroyer', 3),
+    'submarine': Ship('submarine', 3),
+    'patrolBoat': Ship('patrolBoat', 2)
+  }
+  const shipSet = new Set(['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'])
 
   function receiveAttack([x, y]) {
     const ship = board[x][y]
-    if (ships.has(ship)) {
+    if (shipSet.has(ship)) {
       board[x][y] = 'x'
+      ships[ship].hit()
       return true
     } else {
-      board[x][y] = ''
+      board[x][y] = 'o'
       return false
     }
   }
-
-  function checkWin() {
-    for (let i = 0; i < 10; i++) {
-      for (let j = 0; j < 10; j++) {
-        const ship = board[i][j]
-        if (ships.has(ship)) {
-          return false
-        }
+  
+  function allSunk() {
+    for (const key in ships) {
+      if (!key.isSunk) {
+        return false
       }
     }
     return true
   }
+
+
 
   function placeShip([x, y], axis, shipName) {
     if (axis === 'x') {
@@ -91,7 +98,23 @@ function GameBoard() {
   }
 
 
-  return { getBoard, placeShip, receiveAttack, checkWin }
+  return { getBoard, placeShip, receiveAttack, allSunk }
 }
 
-module.exports = { Ship, GameBoard }
+function Player(name) {
+  const gameBoard = GameBoard()
+
+
+  function getName() {
+    return name
+  }
+
+  function getGameBoard() {
+    return gameBoard
+  }
+
+  return { getGameBoard, getName }
+
+}
+
+module.exports = { Ship, GameBoard, Player }
