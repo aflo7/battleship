@@ -1,19 +1,18 @@
+import Player from '../factories/Player.js'
+import { sleep } from '../utilities/utils.js'
+import { ships, generateCoordinates, shipLengths } from '../utilities/gameItems.js'
+
 const playerContainer = document.getElementById('player')
 const computerContainer = document.getElementById('computer')
+const axisButton = document.getElementById('axisButton')
+const computerContents = document.getElementById('computerContents')
 
-import Player from '../factories/Player.js'
-import { sleep, randomIntBetween } from '../utilities/utils.js'
-import { shipLengths, ships, generateCoordinates } from '../utilities/gameItems.js'
+
 let placedShips = 0
 let axis = 'x'
-const axisButton = document.getElementById('axisButton')
-axisButton.addEventListener("click", () => {
-  axis = axis === 'x' ? 'y' : 'x'
-  document.getElementById('axis').textContent = `${axis}-axis`
-})
-const possibleComputerChoices = generateCoordinates()
-const player = Player("Andres")
-const computer = Player("Computer")
+let possibleComputerChoices = generateCoordinates()
+let player = Player("Andres")
+let computer = Player("Computer")
 let play = false
 let turn = "player"
 
@@ -33,6 +32,35 @@ function createInitialBoards() {
         }
       })
       playerContainer.appendChild(playerBox)
+
+      const box = document.createElement('div')
+      box.id = 'hoverBox'
+      playerBox.addEventListener('mouseenter', (e) => {
+        if (play) return
+        const rect = playerBox.getBoundingClientRect();
+        if (axis === 'x') {
+          box.style.height = '30px'
+          box.style.width = `${shipLengths[ships[placedShips]]*30}px`
+
+        } else if (axis === 'y') {
+          box.style.width = '30px'
+          box.style.height = `${shipLengths[ships[placedShips]]*30}px`
+        }
+
+        box.style.backgroundColor = 'lightgreen'
+        box.style.position = 'absolute'
+        box.style.top = `${rect.top}px`
+        box.style.right = `${rect.right}px`
+        box.style.bottom = `${rect.bottom}px`
+        box.style.left = `${rect.left}px`
+        box.style.pointerEvents = 'none'
+        playerContainer.appendChild(box)
+      })
+      playerBox.addEventListener('mouseleave', (e) => {
+        const hoverBox = document.getElementById('hoverBox')
+        if (hoverBox) hoverBox.remove()
+      })
+
       const computerBox = document.createElement('div')
       computerBox.id = `c[${i},${j}]`
       computerContainer.appendChild(computerBox)
@@ -65,9 +93,6 @@ function renderComputerBoard() {
         box.className = 'miss'
       } else if (board[i][j] === 'x') {
         box.className = 'hit'
-      } else if (board[i][j] !== "") {
-        box.className = 'ship'
-
       }
       box.style.cursor = 'pointer'
       box.addEventListener('click', () => {
@@ -125,8 +150,13 @@ function startGame() {
   document.getElementById('axisButton').style.display = 'none'
   ships.forEach(ship => computer.getGameBoard().placeRandomShip(ship))
   renderComputerBoard()
+  computerContents.style.display = 'block'
   play = true
   document.getElementById("instructions").textContent = 'Your turn!'
 }
 
 window.addEventListener('DOMContentLoaded', createInitialBoards)
+axisButton.addEventListener("click", () => {
+  axis = axis === 'x' ? 'y' : 'x'
+  document.getElementById('axis').textContent = `${axis}-axis`
+})
