@@ -1,4 +1,4 @@
-h1 {
+h1,h2 {
   text-align: center;
 }
 
@@ -52,4 +52,11 @@ body {
 
 .ship {
   background-color: rgb(55, 55, 55) !important;
+}
+
+#battleshipImg {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
 }

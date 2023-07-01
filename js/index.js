@@ -3,7 +3,7 @@ const computerContainer = document.getElementById('computer')
 
 import Player from '../factories/Player.js'
 import { sleep, randomIntBetween } from '../utilities/utils.js'
-import { shipLengths, ships } from '../utilities/gameItems.js'
+import { shipLengths, ships, generateCoordinates } from '../utilities/gameItems.js'
 let placedShips = 0
 let axis = 'x'
 const axisButton = document.getElementById('axisButton')
@@ -11,8 +11,7 @@ axisButton.addEventListener("click", () => {
   axis = axis === 'x' ? 'y' : 'x'
   document.getElementById('axis').textContent = `${axis}-axis`
 })
-
-
+const possibleComputerChoices = generateCoordinates()
 const player = Player("Andres")
 const computer = Player("Computer")
 let play = false
@@ -66,8 +65,6 @@ function renderComputerBoard() {
         box.className = 'miss'
       } else if (board[i][j] === 'x') {
         box.className = 'hit'
-      } else if (board[i][j] !== "") {
-        box.className = 'ship'
       }
       box.style.cursor = 'pointer'
       box.addEventListener('click', () => {
@@ -81,9 +78,9 @@ function renderComputerBoard() {
 
           const allSunk = computer.getGameBoard().allSunk()
           if (allSunk) {
-            alert('You win!')
             play = false
-            document.getElementById("instructions").textContent = 'You win!'
+            document.getElementById("outcome").textContent = 'You win!'
+            document.getElementById("instructions").textContent = ''
             return
           }
 
@@ -96,30 +93,6 @@ function renderComputerBoard() {
 }
 
 
-function shuffle(array) {
-  let currentIndex = array.length
-  let randomIndex
-  while (currentIndex != 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
-function generateCoordinates() {
-
-  const coords = []
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
-      coords.push([i, j])
-    }
-  }
-  const shuffledArray = shuffle(coords)
-  return shuffledArray
-}
-const possibleComputerChoices = generateCoordinates()
-
 async function computerTurn() {
   if (turn === "computer") {
     document.getElementById("instructions").textContent = ''
@@ -129,13 +102,16 @@ async function computerTurn() {
     const y = randomChoice[1]
     player.getGameBoard().receiveAttack([x, y])
     renderPlayerBoard()
+
     const allSunk = player.getGameBoard().allSunk()
     if (allSunk) {
-      alert('You lose!')
       play = false
-      document.getElementById("instructions").textContent = 'You lose!'
+      document.getElementById("outcome").textContent = 'You lose!'
+      document.getElementById("instructions").textContent = ''
+
       return
     }
+
     turn = 'player'
     document.getElementById("instructions").textContent = 'Your turn!'
   }
