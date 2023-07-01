@@ -23,6 +23,13 @@ const player = Player("Andres")
 const computer = Player("computer")
 let play = false
 let turn = "player"
+const shipLengths = {
+  'carrier': 5,
+  'battleship': 4,
+  'destroyer': 3,
+  'submarine': 3,
+  'patrolBoat': 2
+}
 
 function createInitialBoards() {
   for (let i = 0; i < 10; i++) {
@@ -101,12 +108,37 @@ function renderComputerBoard() {
   }
 }
 
+function generateCoordinates() {
+  const coords = []
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      coords.push([i, j])
+    }
+  }
+  const shuffledArray = shuffle(coords)
+  return shuffledArray
+}
+function shuffle(array) {
+  let currentIndex = array.length
+  let randomIndex
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+const possibleComputerChoices = generateCoordinates()
+
 async function computerTurn() {
   if (turn === "computer") {
     document.getElementById("instructions").textContent = ''
-    await sleep(10)
-    const x = randomIntFromInterval(0, 9)
-    const y = randomIntFromInterval(0, 9)
+    await sleep(300)
+    const randomChoice = possibleComputerChoices.pop()
+    const x = randomChoice[0]
+    const y = randomChoice[1]
     player.getGameBoard().receiveAttack([x, y])
     renderPlayerBoard()
     const allSunk = player.getGameBoard().allSunk()
@@ -116,21 +148,45 @@ async function computerTurn() {
       document.getElementById("instructions").textContent = 'You lose!'
       return
     }
-
     turn = 'player'
     document.getElementById("instructions").textContent = 'Your turn!'
+  }
+}
+
+function placeRandomShip(shipName) {
+  let random = randomIntFromInterval(0, 1)
+  let axis = random === 0 ? 'x' : 'y'
+  let offset = shipLengths[shipName] - 1
+  const computerBoard = computer.getGameBoard()
+  if (axis === 'x') {
+    let x = randomIntFromInterval(0, 9)
+    let y = randomIntFromInterval(0, 9 - offset)
+    let placement = computerBoard.placeShip([x, y], 'x', shipName)
+    while (placement === undefined) {
+      x = randomIntFromInterval(0, 9)
+      y = randomIntFromInterval(0, 9 - offset)
+      placement = computerBoard.placeShip([x, y], 'x', shipName)
+    }
+  } else if (axis === 'y') {
+    let x = randomIntFromInterval(0, 9 - offset)
+    let y = randomIntFromInterval(0, 9)
+    let placement = computerBoard.placeShip([x, y], 'y', shipName)
+    while (placement === undefined) {
+      x = randomIntFromInterval(0, 9 - offset)
+      y = randomIntFromInterval(0, 9)
+      placement = computerBoard.placeShip([x, y], 'y', shipName)
+    }
   }
 }
 
 function startGame() {
   document.getElementById('axis').style.display = 'none'
   document.getElementById('axisButton').style.display = 'none'
-  const computerBoard = computer.getGameBoard()
-  computerBoard.placeShip([0, 0], 'x', 'carrier')
-  computerBoard.placeShip([1, 0], 'x', 'battleship')
-  computerBoard.placeShip([2, 0], 'x', 'destroyer')
-  computerBoard.placeShip([3, 0], 'x', 'submarine')
-  computerBoard.placeShip([4, 0], 'x', 'patrolBoat')
+  placeRandomShip("carrier")
+  placeRandomShip("battleship")
+  placeRandomShip("destroyer")
+  placeRandomShip("submarine")
+  placeRandomShip("patrolBoat")
   renderComputerBoard()
   play = true
   document.getElementById("instructions").textContent = 'Your turn!'

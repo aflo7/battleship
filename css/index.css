@@ -2,6 +2,10 @@ h1 {
   text-align: center;
 }
 
+body {
+  background-color: rgb(90, 164, 248);
+
+}
 #container {
     display: flex;
     gap: 20px;
@@ -24,23 +28,26 @@ h1 {
 }
 
 #player > div {
-    background-color: white;
+  background-color: rgb(90, 164, 248);
+
+
     width: 20px;
     height: 20px;
 }
 #computer > div {
-  background-color: white;
+  background-color: rgb(90, 164, 248);
+
     width: 20px;
     height: 20px;
 }
 
 .miss {
-  background-color: lightblue !important;
+  background-color: white !important;
 
 }
 
 .hit {
-  background-color: lightcoral !important;
+  background-color: rgb(237, 93, 93) !important;
 }
 
 .ship {
