@@ -61,6 +61,7 @@ function GameBoard() {
         board[i][y] = shipName
       }
     }
+    return true
   }
 
   function getBoard() {

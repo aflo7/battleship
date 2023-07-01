@@ -1,0 +1,48 @@
+h1 {
+  text-align: center;
+}
+
+#container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+#container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#player,
+#computer {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(10, 20px);
+    background-color: black;
+    border: 1px solid black;
+}
+
+#player > div {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+}
+#computer > div {
+  background-color: white;
+    width: 20px;
+    height: 20px;
+}
+
+.miss {
+  background-color: lightblue !important;
+
+}
+
+.hit {
+  background-color: lightcoral !important;
+}
+
+.ship {
+  background-color: rgb(55, 55, 55) !important;
+}
