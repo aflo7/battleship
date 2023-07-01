@@ -1,4 +1,5 @@
 import Ship from "./Ship";
+import { randomIntBetween } from "../utilities/utils";
 function GameBoard() {
   const board = [...Array(10)].map(e => Array(10).fill(""));
   const shipLengths = {
@@ -16,6 +17,31 @@ function GameBoard() {
     'patrolBoat': Ship('patrolBoat', 2)
   }
   const shipSet = new Set(['carrier', 'battleship', 'destroyer', 'submarine', 'patrolBoat'])
+
+  function placeRandomShip(shipName) {
+    let random = randomIntBetween(0, 1)
+    let axis = random === 0 ? 'x' : 'y'
+    let offset = shipLengths[shipName] - 1
+    if (axis === 'x') {
+      let x = randomIntBetween(0, 9)
+      let y = randomIntBetween(0, 9 - offset)
+      let placement = placeShip([x, y], 'x', shipName)
+      while (placement === undefined) {
+        x = randomIntBetween(0, 9)
+        y = randomIntBetween(0, 9 - offset)
+        placement = placeShip([x, y], 'x', shipName)
+      }
+    } else if (axis === 'y') {
+      let x = randomIntBetween(0, 9 - offset)
+      let y = randomIntBetween(0, 9)
+      let placement = placeShip([x, y], 'y', shipName)
+      while (placement === undefined) {
+        x = randomIntBetween(0, 9 - offset)
+        y = randomIntBetween(0, 9)
+        placement = placeShip([x, y], 'y', shipName)
+      }
+    }
+  }
 
   function receiveAttack([x, y]) {
     const ship = board[x][y]
@@ -69,7 +95,7 @@ function GameBoard() {
   }
 
 
-  return { getBoard, placeShip, receiveAttack, allSunk }
+  return { getBoard, placeShip, receiveAttack, allSunk, placeRandomShip }
 }
 
 export default GameBoard

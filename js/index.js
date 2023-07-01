@@ -65,6 +65,9 @@ function renderComputerBoard() {
         box.className = 'miss'
       } else if (board[i][j] === 'x') {
         box.className = 'hit'
+      } else if (board[i][j] !== "") {
+        box.className = 'ship'
+
       }
       box.style.cursor = 'pointer'
       box.addEventListener('click', () => {
@@ -117,36 +120,10 @@ async function computerTurn() {
   }
 }
 
-function placeRandomShip(shipName) {
-  let random = randomIntBetween(0, 1)
-  let axis = random === 0 ? 'x' : 'y'
-  let offset = shipLengths[shipName] - 1
-  const computerBoard = computer.getGameBoard()
-  if (axis === 'x') {
-    let x = randomIntBetween(0, 9)
-    let y = randomIntBetween(0, 9 - offset)
-    let placement = computerBoard.placeShip([x, y], 'x', shipName)
-    while (placement === undefined) {
-      x = randomIntBetween(0, 9)
-      y = randomIntBetween(0, 9 - offset)
-      placement = computerBoard.placeShip([x, y], 'x', shipName)
-    }
-  } else if (axis === 'y') {
-    let x = randomIntBetween(0, 9 - offset)
-    let y = randomIntBetween(0, 9)
-    let placement = computerBoard.placeShip([x, y], 'y', shipName)
-    while (placement === undefined) {
-      x = randomIntBetween(0, 9 - offset)
-      y = randomIntBetween(0, 9)
-      placement = computerBoard.placeShip([x, y], 'y', shipName)
-    }
-  }
-}
-
 function startGame() {
   document.getElementById('axis').style.display = 'none'
   document.getElementById('axisButton').style.display = 'none'
-  ships.forEach(ship => placeRandomShip(ship))
+  ships.forEach(ship => computer.getGameBoard().placeRandomShip(ship))
   renderComputerBoard()
   play = true
   document.getElementById("instructions").textContent = 'Your turn!'
