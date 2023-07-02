@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Starter Snowpack App" />
+  <title>Battleship</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+
+</head>
+
+<body>
+  <!-- <h1>Battleship</h1> -->
+  <div id="battleshipImg">
+    <img src="images/1784366.webp" height="80px" />
+  </div>
+
+  <div id="container">
+    <div>
+      <h2>Player</h2>
+      <div id="player"></div>
+      <p id="instructions">Place ships...</p>
+      <p id="axis">x-axis</p>
+      <button id="axisButton">Change axis</button>
+
+    </div>
+
+    <div id="computerContents">
+      <h2>Computer</h2>
+      <div id="computer"></div>
+    </div>
+
+  </div>
+  <h2 id="outcome"></h2>
+
+  <script type="module" src="js/index.js"></script>
+</body>
+
+</html>

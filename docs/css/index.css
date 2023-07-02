@@ -1,0 +1,77 @@
+h1,
+h2 {
+    text-align: center;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
+body {
+    background-color: rgb(90, 164, 248);
+}
+#container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+
+#computerContents {
+    display: none;
+}
+
+@media screen and (min-width: 700px) {
+    #container {
+        flex-direction: row;
+        gap: 30px;
+        justify-content: center;
+        align-items: normal;
+    }
+}
+
+#player,
+#computer {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(10, 30px);
+    background-color: black;
+    border: 1px solid black;
+}
+#player {
+    /* position: relative; */
+}
+
+#player > div {
+    background-color: rgb(90, 164, 248);
+    width: 30px;
+    height: 30px;
+}
+#computer > div {
+    background-color: rgb(90, 164, 248);
+    width: 30px;
+    height: 30px;
+}
+
+#computer > div:hover {
+    background-color: rgb(62, 152, 255);
+}
+
+.miss {
+    background-color: white !important;
+}
+
+.hit {
+    background-color: rgb(237, 93, 93) !important;
+}
+
+.ship {
+    background-color: rgb(55, 55, 55) !important;
+}
+
+#battleshipImg {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
