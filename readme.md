@@ -1,3 +1,6 @@
+
+My solution link: https://aflo7.github.io/battleship/
+
 TODO
 
 - add ship hover placement effect (done)
