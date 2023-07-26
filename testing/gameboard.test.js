@@ -1,9 +1,7 @@
 
 import GameBoard from '../factories/GameBoard.js'
-import { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit } from './boards.js'
+import { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit, boardWithCarrierAtBottomRightHorizontal, boardWithCarrierAtBottomRightVertical } from './boards.js'
 
-// placeShip() tests
-// startCoord, axis, shipName
 test('init empty board', () => {
   const expected = emptyBoard
   const gameBoard = GameBoard()
@@ -139,3 +137,18 @@ test('place vertical ship, then try placing horizontal ship on top', () => {
   expect(result).toEqual(expected)
 })
 
+test('place carrier at 9,5 horizontally', () => {
+  const board = GameBoard()
+  board.placeShip([9, 5], 'x', 'carrier')
+  const expected = boardWithCarrierAtBottomRightHorizontal
+  const result = board.getBoard()
+  expect(result).toEqual(expected)
+})
+
+test('place carrier at 5,9 vertically', () => {
+  const board = GameBoard()
+  board.placeShip([5, 9], 'y', 'carrier')
+  const expected = boardWithCarrierAtBottomRightVertical
+  const result = board.getBoard()
+  expect(result).toEqual(expected)
+})
