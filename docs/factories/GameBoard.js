@@ -66,7 +66,7 @@ function GameBoard() {
 
   function placeShip([x, y], axis, shipName) {
     if (axis === 'x') {
-      if (y + shipLengths[shipName] > 9) return
+      if (y + shipLengths[shipName] > 10) return
       // scan from startCoord along x, make sure spots are empty
       for (let i = y; i < y + shipLengths[shipName]; i++) {
         if (board[x][i] !== "") return
@@ -76,7 +76,7 @@ function GameBoard() {
         board[x][i] = shipName
       }
     } else if (axis === 'y') {
-      if (x + shipLengths[shipName] > 9) return
+      if (x + shipLengths[shipName] > 10) return
 
       // scan from startCoord along y, make sure spots are empty
       for (let i = x; i < x + shipLengths[shipName]; i++) {

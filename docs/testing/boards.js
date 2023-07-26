@@ -272,4 +272,30 @@ const boardWithSunkBattleShipAlongX = [
   ['', '', '', '', '', '', '', '', '', ''],
 ]
 
-export { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit, boardWithSunkBattleShipAlongX, boardWithFiveSunkShipsAlongX }
+const boardWithCarrierAtBottomRightHorizontal = [
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', 'carrier', 'carrier', 'carrier', 'carrier', 'carrier'],
+]
+
+const boardWithCarrierAtBottomRightVertical = [
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', ''],
+  ['', '', '', '', '', '', '', '', '', 'carrier'],
+  ['', '', '', '', '', '', '', '', '', 'carrier'],
+  ['', '', '', '', '', '', '', '', '', 'carrier'],
+  ['', '', '', '', '', '', '', '', '', 'carrier'],
+  ['', '', '', '', '', '', '', '', '', 'carrier'],
+]
+
+export { emptyBoard, boardWithPatrolBoatAlongX, boardWithPatrolBoatAlongY, boardWithSubmarineAlongX, boardWithBattleShipAlongX, boardWithDestroyerAlongX, boardWithCarrierAlongX, boardWithFiveShipsAlongX, boardWithFiveShipsAlongY, boardWithBattleShipAlongXWithOneHit, boardWithSunkBattleShipAlongX, boardWithFiveSunkShipsAlongX, boardWithCarrierAtBottomRightHorizontal, boardWithCarrierAtBottomRightVertical }
